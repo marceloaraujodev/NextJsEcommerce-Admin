@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Logo from './Logo';
 
-export default function nav({show}) {
+export default function Nav({show}) {
   const inactiveLink = 'flex gap-1 p-1';
   const activeLink = inactiveLink + ' bg-highlight text-black rounded-md';
   const inactiveIcon = 'w-6 h-6';
