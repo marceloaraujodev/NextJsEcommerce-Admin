@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-export default function deleteProduct() {
+export default function DeleteProduct() {
   const router = useRouter();
   const [productInfo, setProductInfo] = useState();
   const { id } = router.query;
@@ -27,7 +27,7 @@ export default function deleteProduct() {
 
   return (
     <Layout>
-      <h1 className='text-center'>Do you really want to delete product &nbsp; "{productInfo?.title}" ?</h1>
+      <h1 className='text-center'>Do you really want to delete product &nbsp; {productInfo?.title} ?</h1>
       <div className='flex gap-2 justify-center mt-4'>
       <button className='btn-red' onClick={deleteProduct}>Yes</button>
       <button className='btn-default' onClick={goBackToProducts}>No</button>
