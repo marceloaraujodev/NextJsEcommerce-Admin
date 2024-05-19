@@ -6,7 +6,6 @@
   "extends": ["next","next/core-web-vitals"],
   "rules": {
     "@next/next/no-img-element": "off"
-  },
-  "css.lint.unknownAtRules": ["@tailwindcss(base)", "@tailwindcss(components)", "@tailwindcss(utilities)"]
+  }
 }
 
