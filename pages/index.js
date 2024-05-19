@@ -14,6 +14,5 @@ export default function Home() {
         </div>
       </div>
     </Layout>
-    // <h1>Test</h1>
   );
 }
