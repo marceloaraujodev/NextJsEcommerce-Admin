@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
+  const [isShipped, setIsShipped] = useState(false)
+
 
   useEffect(() => {
     axios.get('/api/orders').then(response => {
@@ -13,12 +15,19 @@ export default function OrdersPage() {
     });
   }, [])
 
+ async function handleClick(_id){
+  setIsShipped(true)
+  const res = await axios.post('/api/orders', {shipped: true, _id})
+  console.log(res.data)
+ }
+
   return (
     <Layout>
       <h1>Orders</h1>
       <table className="basic">
         <thead>
           <tr>
+            <th>Shipped</th>
             <th>Date</th>
             <th>Paid</th>
             <th>Recipient</th>
@@ -28,6 +37,15 @@ export default function OrdersPage() {
         <tbody>
           {orders.length > 0 && orders.map((order, index) => (
             <tr key={order._id}>
+                <td>
+                {isShipped || order.shipped ? (
+                  <span className='text-green-600'>Shipped</span>
+                ) : (
+                  <button onClick={() => handleClick(order._id)} className="bg-gray-200 py-1 px-2 rounded-md border-solid border-2 border-gray-400">Shipped</button>
+                )}
+
+
+                </td>
               <td >{(new Date(order.createdAt)).toLocaleString('en-US', { timeZone: 'UTC' })}</td>
               <td className={order.paid ? 'text-green-600' : 'text-red'}>{order.paid ? 'Paid' : 'Waiting Payment' }</td>
               <td>{order.name}<br /> {order.email}<br />
